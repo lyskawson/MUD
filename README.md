@@ -1,1 +1,1 @@
-All matlab and simulink programs form Models of Dynamic Systems.
+All matlab scripts and simulink models from Models of Dynamic Systems classes.
