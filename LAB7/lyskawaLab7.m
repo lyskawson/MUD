@@ -1,6 +1,7 @@
-%Aleksander Lyskawa
-%pt 13:15
-%LAB 6
+% Aleksander Lyskawa
+% 275462
+% pt 13:15
+% LAB 7
 
 close all;
 clear all;
@@ -17,7 +18,9 @@ Aw2 = 0.1 * 2;
 H2 = 4; 
 
 t0 =5;
-stopTime = 25;
+maxStepSize = 0.001;
+startTime = 0;
+stopTime = 60;
 g=9.81;
 
 %------------------------------------ liniowo  
@@ -33,12 +36,11 @@ dfwe2 = 0;
 arrayfwe1_0 = [0,0.5*fwe1max,0.9*fwe1max];
 fwe2_0=0.2*fwe2max;
 
-
 % wykres h1
 figure;
 for i=1:3
     fwe1_0=arrayfwe1_0(i); 
-    h2_0=(fwe1_0+fwe2_0)/a2;
+    h2_0=(fwe1_0 + fwe2_0)/a2;
     h1_0=fwe1_0/a1 + h2_0;
     
     hold on;
@@ -54,7 +56,7 @@ end
 figure;
 for i=1:3
     fwe1_0=arrayfwe1_0(i); 
-    h2_0=(fwe1_0+fwe2_0)/a2;
+    h2_0=(fwe1_0 + fwe2_0)/a2;
     h1_0=fwe1_0/a1 + h2_0;
     
     hold on;
@@ -76,7 +78,7 @@ arrayfwe2_0= [0,0.5*fwe2max,0.9*fwe2max];
 figure;
 for i=1:3
     fwe2_0=arrayfwe2_0(i); 
-    h2_0=(fwe1_0+fwe2_0)/a2;
+    h2_0=(fwe1_0 + fwe2_0)/a2;
     h1_0=fwe1_0/a1 + h2_0;
     
     hold on;
@@ -91,8 +93,8 @@ end
 % wykres h2 
 figure;
 for i=1:3
-    fwe1_0=arrayfwe1_0(i); 
-    h2_0=(fwe1_0+fwe2_0)/a2;
+    fwe2_0=arrayfwe2_0(i); 
+    h2_0=(fwe1_0 + fwe2_0)/a2;
     h1_0=fwe1_0/a1 + h2_0;
     
     hold on;
@@ -113,7 +115,7 @@ fwe2max= Aw2*sqrt(2*g*H2)-fwe1max;
 dfwe1 = 0.1*fwe1max;
 dfwe2= 0;
 arrayfwe1_0 = [0,0.5* fwe1max, 0.9 * fwe1max]; 
-fwe2_0 = 0.1 * fwe2max;
+fwe2_0 = 0.2 * fwe2max;
 
 
 % wykres h1
@@ -146,4 +148,42 @@ for i=1:3
     ylabel('h2');
     title('Wykres h(t) w zbiorniku nr 2 po wymuszeniu w zbiorniku nr 1 (nieliniowy )');
 end
+
+%% skok w zbiorniku 2, zbiornik 1 = const
+dfwe1 = 0;
+dfwe2= 0.1*fwe2max;
+fwe1_0 = 0.2 * fwe1max;
+arrayfwe2_0 = [0,0.5* fwe2max, 0.9 * fwe2max]; 
+
+% wykres h1
+figure;
+for i=1:3
+    fwe2_0=arrayfwe2_0(i); 
+    h2_0=(fwe1_0+fwe2_0)^2/(Aw2^2 *2*g);
+    h1_0=(fwe1_0^2)/(Aw1^2 *2*g) + h2_0;
+
+    hold on;
+    grid on;
+    sim(nonlinear_model);
+    plot(ans.tout,ans.h1, LineWidth=2);
+    xlabel('time [s]')
+    ylabel('h1');
+    title('Wykres h(t) w zbiorniku nr 1 po wymuszeniu w zbiorniku nr 2 (nieliniowy model)');
+end 
+
+% wykres h2 
+figure;
+for i=1:3
+    fwe2_0=arrayfwe2_0(i); 
+    h2_0=(fwe1_0+fwe2_0)^2/(Aw2^2 *2*g);
+    h1_0=(fwe1_0^2)/(Aw1^2 *2*g) + h2_0;
+    hold on;
+    grid on;
+    sim(nonlinear_model);
+    plot(ans.tout,ans.h2,LineWidth=2);
+    xlabel('time [s]')
+    ylabel('h2');
+    title('Wykres h(t) w zbiorniku nr 2 po wymuszeniu w zbiorniku nr 2 (nieliniowy )');
+end
+
 
