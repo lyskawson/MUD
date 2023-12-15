@@ -8,7 +8,7 @@ close all;
 clc;
 
 model='lyskawaLab8_si.slx';
-model_rs= 'lyskawaLab8_si_rs.slx'
+model_rs='lyskawaLab8_si_rs.slx';
 A1 = 2; 
 Aw1 = 0.1 * 2; 
 H1 = 5;
@@ -56,6 +56,7 @@ for i=1:3
     xlabel('time [s]')
     ylabel('h1');
     title('Wykres h(t) w zbiorniku nr 1 po wymuszeniu w zbiorniku nr 1 (transmitancje) ');
+    set(gca,"FontSize",18)
 end 
 
 % wykres h2 
@@ -72,6 +73,7 @@ for i=1:3
     xlabel('time [s]')
     ylabel('h2');
     title('Wykres h(t) w zbiorniku nr 2 po wymuszeniu w zbiorniku nr 1 (transmitancje)');
+    set(gca,"FontSize",18)
 end
 
 %% skok w zbiorniku 2, zbiornik 1 = const
@@ -139,6 +141,7 @@ for i=1:3
     xlabel('time [s]')
     ylabel('h1');
     title('Wykres h(t) w zbiorniku nr 1 po wymuszeniu w zbiorniku nr 1 (r. stanu)');
+    set(gca,"FontSize",18)
 end 
 
 % wykres h2 
@@ -156,6 +159,7 @@ for i=1:3
     xlabel('time [s]')
     ylabel('h2');
     title('Wykres h(t) w zbiorniku nr 2 po wymuszeniu w zbiorniku nr 1 (r. stanu)');
+    set(gca,"FontSize",18)
 end
 
 %% skok w zbiorniku 2, zbiornik 1 = const

@@ -66,6 +66,7 @@ for i=1:3
     xlabel('time [s]')
     ylabel('h2');
     title('Wykres h(t) w zbiorniku nr 2 po wymuszeniu w zbiorniku nr 1(liniowy model)');
+  
 end
 
 %% skok w zbiorniku 2, zbiornik 1 = const
@@ -114,7 +115,7 @@ fwe2max= Aw2*sqrt(2*g*H2)-fwe1max;
 %% skok w zbiorniku 1, zbiornik 2 = const
 dfwe1 = 0.1*fwe1max;
 dfwe2= 0;
-arrayfwe1_0 = [0,0.5* fwe1max, 0.9 * fwe1max]; 
+arrayfwe1_0 = [ 0,0.5* fwe1max, 0.9 * fwe1max]; 
 fwe2_0 = 0.2 * fwe2max;
 
 
@@ -132,6 +133,8 @@ for i=1:3
     xlabel('time [s]')
     ylabel('h1');
     title('Wykres h(t) w zbiorniku nr 1 po wymuszeniu w zbiorniku nr 1 (nieliniowy model)');
+
+    
 end 
 
 % wykres h2 
@@ -146,7 +149,8 @@ for i=1:3
     plot(ans.tout,ans.h2,LineWidth=2);
     xlabel('time [s]')
     ylabel('h2');
-    title('Wykres h(t) w zbiorniku nr 2 po wymuszeniu w zbiorniku nr 1 (nieliniowy )');
+    title('Wykres h(t) w zbiorniku nr 2 po wymuszeniu w zbiorniku nr 1 (nieliniowy model )');
+
 end
 
 %% skok w zbiorniku 2, zbiornik 1 = const
@@ -169,6 +173,7 @@ for i=1:3
     xlabel('time [s]')
     ylabel('h1');
     title('Wykres h(t) w zbiorniku nr 1 po wymuszeniu w zbiorniku nr 2 (nieliniowy model)');
+    set(gca,"FontSize",18)
 end 
 
 % wykres h2 
@@ -184,6 +189,7 @@ for i=1:3
     xlabel('time [s]')
     ylabel('h2');
     title('Wykres h(t) w zbiorniku nr 2 po wymuszeniu w zbiorniku nr 2 (nieliniowy )');
+    set(gca,"FontSize",18)
 end
 
 

@@ -7,7 +7,7 @@ clear all
 close all
 
 model = 'lyskawaLab4_si.slx';
-t = [0:0.01:4];
+t = [0:0.01:3];
 
 %Initial conditions 
 %1) x'(0)=0
@@ -36,7 +36,7 @@ for i=1:length(initialConditions)
    title('Rozwiazanie dla ',titles(i));
    xlabel('t');
    ylabel('x');
-   set(gca,"FontSize",12)
+   set(gca,"FontSize",14)
 end
 
 %% analitycznie (same rozwiazanie ) 
@@ -49,49 +49,50 @@ figure('Name','Rozwiazania analityczne');
 subplot(2,2,1)
 xs_1 = 0;
 x_1 = xs_1 + xw;
-title('Name',"Rozwiazanie dla x'(0)=0")
+title("Rozwiazanie dla x'(0)=0")
 grid on
 hold on
 plot(t,poziom,'red', LineWidth=2)
 xlabel('t')
 ylabel('x')
-set(gca,"FontSize",12)
+set(gca,"FontSize",14)
 
 %2)
 subplot(2,2,2)
 xs_2 = -3*exp(-3*t);
 x_2 = xs_2 + xw;
-title('Name',"Rozwiazanie dla x'(0)=9")
+title("Rozwiazanie dla x'(0)=9")
 grid on
 hold on
 plot(t,x_2,'blue', LineWidth=2)
+
 xlabel('t')
 ylabel('x')
-set(gca,"FontSize",12)
+set(gca,"FontSize",14)
 
 %3)
 subplot(2,2,3)
 xs_3 = -10/3*exp(-3*t);
 x_3 = xs_3 + xw;
-title('Name',"Rozwiazanie dla x(0)=0")
+title("Rozwiazanie dla x(0)=0")
 grid on
 hold on
 plot(t,x_3,'magenta', LineWidth=2)
 xlabel('t')
 ylabel('x')
-set(gca,"FontSize",12)
+set(gca,"FontSize",14)
 
 %4)
 subplot(2,2,4)
 xs_4 = 14/3*exp(-3*t);
 x_4 = xs_4 + xw;
-title('Name',"Rozwiazanie dla  x(0)=8")
+title("Rozwiazanie dla  x(0)=8")
 grid on
 hold on
 plot(t,x_4,'green', LineWidth=2)
 xlabel('t')
 ylabel('x')
-set(gca,"FontSize",12)
+set(gca,"FontSize",14)
 
 %% analitycznie ze skladowowymi
 
@@ -100,19 +101,19 @@ figure('Name','Rozwiazania analityczne ze skladowymi');
 subplot(2,2,1)
 xs_1 = 0;
 x_1 = xs_1 + xw;
-title('Name',"Rozwiazanie dla x'(0)=0")
+title("Rozwiazanie dla x'(0)=0")
 grid on
 hold on
 plot(t,poziom,'red', LineWidth=2)
 xlabel('t')
 ylabel('x')
-set(gca,"FontSize",12)
+set(gca,"FontSize",14)
 
 %2)
 subplot(2,2,2)
 xs_2 = -3*exp(-3*t);
 x_2 = xs_2 + xw;
-title('Name',"Rozwiazanie dla x'(0)=9")
+title("Rozwiazanie dla x'(0)=9")
 grid on
 hold on
 plot(t,x_2,'blue', LineWidth=2)
@@ -120,13 +121,13 @@ plot(t, poziom, 'r--')
 plot(t,xs_2, 'k--')
 xlabel('t')
 ylabel('x')
-set(gca,"FontSize",12)
+set(gca,"FontSize",14)
 
 %3)
 subplot(2,2,3)
 xs_3 = -10/3*exp(-3*t);
 x_3 = xs_3 + xw;
-title('Name',"Rozwiazanie dla x(0)=0")
+title("Rozwiazanie dla x(0)=0")
 grid on
 hold on
 plot(t,x_3,'magenta', LineWidth=2)
@@ -134,13 +135,13 @@ plot(t, poziom, 'r--')
 plot(t, xs_3, 'k--')
 xlabel('t')
 ylabel('x')
-set(gca,"FontSize",12)
+set(gca,"FontSize",14)
 
 %4)
 subplot(2,2,4)
 xs_4 = 14/3*exp(-3*t);
 x_4 = xs_4 + xw;
-title('Name',"Rozwiazanie dla  x(0)=8")
+title("Rozwiazanie dla  x(0)=8")
 grid on
 hold on
 plot(t,x_4,'green', LineWidth=2)
@@ -148,7 +149,7 @@ plot(t, poziom, 'r--')
 plot(t, xs_4, 'k--')
 xlabel('t')
 ylabel('x')
-set(gca,"FontSize",12)
+set(gca,"FontSize",14)
 
 %%Dla odpowiedzi skokowej jednostkowej 
 figure("Name","Rozwiazanie symulacyjne ze skokiem jednostkowym" )
@@ -165,8 +166,9 @@ set(gca,"FontSize",12)
 %%Dla wymuszenia skokowego u0 roznego od 0
 figure("Name","Rozwiazanie symulacyjne dla wymuszenia skokowego roznego od 0" )
 x0 = 0;
-du = 10;
-u0 = 3;
+du = 3;
+t0 = 1.25;
+u0 = 2;
 sim(model)
 plot(ans.tout, ans.x, LineWidth=2)
 grid on;
