@@ -7,7 +7,7 @@ clear all;
 close all;
 clc;
 startTime = 0;
-stopTime = 300;
+stopTime = 500;
 maxStepSize = 0.001;
 model='lyskawaProject_si.slx';
 model_rs='lyskawaProject_si_rs.slx';
@@ -44,7 +44,7 @@ Cvp=cp*ro*Vp;   %pojemnosc cieplna poddasza
 %-------- 2. Punkty pracy -------------------
 Tz0=TzN;
 Tk0=TkN;
-fp0=fpN;
+fp0=fpN*0.7;
 
 %punkty rownowagi
 A = [-cp*ro*fp0-K1-Kp, Kp; cp*ro*fp0+Kp, -cp*ro*fp0-K2-Kp];
@@ -54,14 +54,11 @@ x = -inv(A)*B*u;
 Tw0 = x(1);
 Tp0 = x(2);
 
-% M = (cp * ro * fp0 + Kp + K2 - (Kp^2 * cp * ro * fp0 / (cp * ro * fp0 + K1 + Kp)));
-% Tp0 = (K2 * Tz0) / M + (Kp * cp^2 * ro^2 * fp0^2 * Tk0 + Kp * K1 * cp * ro * fp0 * Tz0) / (M * cp * ro * fp0+ K1 + Kp);
-% Tw0 = (cp*ro*fp0*Tk0+K1*Tz0+Kp*Tp0) / (cp*ro*fp0+K1+Kp);
 
 %-------- 3. Symulacja ---------------------
-t0=10;
-dfp=0;
-dTz=5;
+t0=50;
+dfp=0.3*fpN;    
+dTz=0;
 dTk=0;
 
 
@@ -138,4 +135,3 @@ plot(ans.tout,ans.Tp, LineWidth=2,Color='Red');
 xlabel('time [s]')
 ylabel('Tp');
 title('Temperatura poddasza (Transmitancje)');
-
